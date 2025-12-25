@@ -50,9 +50,9 @@ function SignupPage() {
     return 'none';
   };
     const { login } = useAuth();
-  const [getName, setName] = useState("");
-  const [getEmail, setEmail] = useState("");
-  const [getPassword, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [getConfirm, setGetConfirm] = useState("");
 
   const handleSubmit = async (e) => {
@@ -61,17 +61,17 @@ function SignupPage() {
     setName(formData.fullName);
     setPassword(formData.password)
     setGetConfirm(formData.confirmPassword)
-    console.log(getPassword)
-    console.log(getConfirm)
+    // console.log(getPassword)
+    // console.log(getConfirm)
     // Basic validation
-    if (getPassword !== getConfirm) {
+    if (password !== getConfirm) {
       toast.error("Password didn't match !");
       return;
     }
     const res = await api.post("/auth/signup", {
-      getName,
-      getEmail,
-      getPassword,
+      name,
+      email,
+      password
     });
     login(res.data.token);
     navigate("/dashboard");
